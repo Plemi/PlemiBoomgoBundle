@@ -1,0 +1,29 @@
+{
+    "name": "plemi/boomgo-bundle",
+    "type": "symfony-bundle",
+    "description": "Bundle for Boomgo the lightweight PHP ODM for MongoDB",
+    "keywords": ["boomgo", "mongodb", "odm"],
+    "authors": [
+        {
+            "name": "Plemi",
+            "homepage": "http://plemi.com/"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/Plemi/PlemiBoomgoBundle/contributors"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.*",
+        "retentio/boomgo": "dev-master"
+    },
+    "suggest": {
+        "mageekguy/atoum": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Plemi\\Bundle\\BoomgoBundle": ""
+        }
+    },
+    "target-dir": "Plemi/Bundle/BoomgoBundle"
+}
