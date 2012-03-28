@@ -13,8 +13,8 @@ namespace Plemi\Bundle\BoomgoBundle\Tests\Units\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 
-use Plemi\Bundle\BoomgoBundle\Tests\Units\Test;
-use Plemi\Bundle\BoomgoBundle\DependencyInjection\Configuration as BaseConfiguration;
+use Plemi\Bundle\BoomgoBundle\Tests\Units\Test,
+    Plemi\Bundle\BoomgoBundle\DependencyInjection\Configuration as BaseConfiguration;
 
 /**
  * Configuration test
