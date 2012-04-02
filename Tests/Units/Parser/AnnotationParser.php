@@ -40,6 +40,7 @@ class AnnotationParser extends Test
 
         $atoumController = new \mageekguy\atoum\mock\controller();
         $atoumController->__construct = function() {};
+        $atoumController->getName = '\mock\ReflectionClass';
 
         $mockReflectedClass = new \mock\ReflectionClass($atoumController);
 
@@ -78,7 +79,7 @@ EOF;
                 $parserReflectedMethod->invoke($parser, $mockReflectedClass);
             })
                 ->isInstanceOf('\RuntimeException')
-                ->hasMessage('Boomgo class annotation tag should occur only once for "mageekguy\atoum\mock\controller"');
+                ->hasMessage('Boomgo class annotation tag should occur only once for "\mock\ReflectionClass"');
 
         // Should return true
         $docComment =
@@ -113,6 +114,7 @@ EOF;
 
         $atoumController = new \mageekguy\atoum\mock\controller();
         $atoumController->__construct = function() {};
+        $atoumController->getName = '\mock\ReflectionClass';
 
         $mockReflectedClass = new \mock\ReflectionClass($atoumController);
 
@@ -146,7 +148,7 @@ EOF;
                 $parserReflectedMethod->invoke($parser, $mockReflectedClass);
             })
                 ->isInstanceOf('\InvalidArgumentException')
-                ->hasMessage('Invalid json string found for class "mageekguy\atoum\mock\controller"');
+                ->hasMessage('Invalid json string found for class "\mock\ReflectionClass"');
 
         // Should return an array with connection and collection keys
         $docComment =
