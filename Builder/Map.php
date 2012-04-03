@@ -13,6 +13,11 @@ namespace Plemi\Bundle\BoomgoBundle\Builder;
 
 use Boomgo\Builder\Map as BaseMap;
 
+/**
+ * Extended Map
+ * 
+ * @author David Guyon <dguyon@gmail.com>
+ */
 class Map extends BaseMap
 {
     private $type;
