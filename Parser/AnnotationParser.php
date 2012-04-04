@@ -45,7 +45,7 @@ class AnnotationParser extends BaseAnnotationParser
     /**
      * Execute parsing process of class comment
      * 
-     * @param  \ReflectionClass $reflectedClass The document ReflectedClass
+     * @param  ReflectionClass $reflectedClass The document ReflectedClass
      * 
      * @return array An array filled with class metadata
      */
@@ -63,7 +63,7 @@ class AnnotationParser extends BaseAnnotationParser
     /**
      * Check if a class comment contains a valid Boomgo global annotation
      * 
-     * @param  \ReflectionClass $reflectedClass The class to check
+     * @param  ReflectionClass $reflectedClass The class to check
      * 
      * @throws RuntimeException If contains more than one valid Boomgo annotation
      * 
@@ -89,9 +89,9 @@ class AnnotationParser extends BaseAnnotationParser
     /**
      * Parse class comment to extract document type, connection and collection if defined
      * 
-     * @param  \ReflectionClass $reflectedClass The class to parse comment
+     * @param  ReflectionClass $reflectedClass The class to parse comment
      * 
-     * @throws \InvalidArgumentException If invalid json string found
+     * @throws InvalidArgumentException If invalid json string found
      * 
      * @return array
      */

@@ -6,7 +6,7 @@ namespace Plemi\Bundle\BoomgoBundle\Tests\Documents;
  * Annotation class comment
  * 
  * @author John Doe <john@doe.com>
- * @Boomgo({"type": "Document", "connection": "local_connection", "collection": "my_collection"})
+ * @Boomgo({"type": "DOCUMENT", "connection": "local_connection", "collection": "my_collection"})
  */
 class Annotation
 {
@@ -18,11 +18,59 @@ class Annotation
     /**
      * @Persistent
      */
-    public $novar;
+    protected $novar;
 
     /**
      * @Persistent
-     * @var type short description
+     * @var string short description
      */
-    public $typeDescription;
+    protected $typeDescription;
+
+    /**
+     * A single embedded DocumentEmbed
+     *
+     * @Persistent
+     * @var Plemi\Bundle\BoomgoBundle\Tests\Documents\EmbedAnnotation
+     */
+    protected $document;
+
+    public function setNopersistent($value)
+    {
+        $this->nopersistent = $value;
+    }
+
+    public function getNopersistent()
+    {
+        return $this->nopersistent;
+    }
+
+    public function setNovar($value)
+    {
+        $this->novar = $value;
+    }
+
+    public function getNovar()
+    {
+        return $this->novar;
+    }
+
+    public function setTypeDescription($value)
+    {
+        $this->typeDescription = $value;
+    }
+
+    public function getTypeDescription()
+    {
+        return $this->typeDescription;
+    }
+
+    public function setDocument($value)
+    {
+        $this->document = $value;
+    }
+
+    public function getDocument()
+    {
+        return $this->document;
+    }
 }

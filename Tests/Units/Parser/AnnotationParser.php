@@ -156,7 +156,7 @@ EOF;
 /**
  * Sample comment
  * @author John Doe <john@doe.com>
- * @Boomgo({"connection": "local_connection", "collection": "my_collection"});
+ * @Boomgo({"type": "EMBEDDED_DOCUMENT", "connection": "local_connection", "collection": "my_collection"});
  */
 EOF;
 
@@ -164,8 +164,8 @@ EOF;
         $this->assert()
             ->array($parserReflectedMethod->invoke($parser, $mockReflectedClass))
                 ->isNotEmpty()
-                ->hasKeys(array('connection', 'collection'))
-                ->containsValues(array('local_connection', 'my_collection'));
+                ->hasKeys(array('type', 'connection', 'collection'))
+                ->containsValues(array('EMBEDDED_DOCUMENT', 'local_connection', 'my_collection'));
     }
 
     /**
@@ -186,7 +186,7 @@ EOF;
                 ->hasSize(3)
                 ->hasKeys(array('type', 'connection', 'collection'))
             ->string($metadata['type'])
-                ->isEqualTo('Document')
+                ->isEqualTo('DOCUMENT')
             ->string($metadata['connection'])
                 ->isEqualTo('local_connection')
             ->string($metadata['collection'])
@@ -196,6 +196,8 @@ EOF;
     public function testParse()
     {
         $parser = new BaseAnnotationParser();
+
+        // First annoted document
         $metadata = $parser->parse(__DIR__.'/../../Documents/Annotation.php');
 
         $this->assert
@@ -205,10 +207,28 @@ EOF;
             ->string($metadata['class'])
                 ->isEqualTo('Plemi\\Bundle\\BoomgoBundle\\Tests\\Documents\\Annotation')
             ->string($metadata['type'])
-                ->isEqualTo('Document')
+                ->isEqualTo('DOCUMENT')
             ->string($metadata['connection'])
                 ->isEqualTo('local_connection')
             ->string($metadata['collection'])
-                ->isEqualTo('my_collection');
+                ->isEqualTo('my_collection')
+            ->array($metadata['definitions'])
+                ->hasSize(3)
+                ->hasKeys(array('novar', 'typeDescription', 'document'));
+
+        // Second annoted document
+        $metadata = $parser->parse(__DIR__.'/../../Documents/EmbedAnnotation.php');
+
+        $this->assert
+            ->array($metadata)
+                ->hasSize(3)
+                ->hasKeys(array('class','type', 'definitions'))
+            ->string($metadata['class'])
+                ->isEqualTo('Plemi\\Bundle\\BoomgoBundle\\Tests\\Documents\\EmbedAnnotation')
+            ->string($metadata['type'])
+                ->isEqualTo('EMBEDDED_DOCUMENT')
+            ->array($metadata['definitions'])
+                ->hasSize(2)
+                ->hasKeys(array('string', 'array'));
     }
 }
