@@ -1,0 +1,41 @@
+<?php
+
+namespace {{ repositoryNamespace }};
+
+{% if imports is defined %}
+{% for import in imports %}
+use {{  import }};
+{% endfor %}
+{% endif %}
+
+use Boomgo\Mapper\MapperProvider;
+
+use Plemi\Bundle\BoomgoBundle\Repository\AbstractRepository,
+    Plemi\Bundle\BoomgoBundle\Connection\ConnectionFactory;
+
+/**
+ * {{ map.getClassName }}Repository
+ *
+ * Auto generated Repository class for/by Boomgo
+ * Edit this file
+ * Beware when versioning as Boomgo will rewrite it
+ */
+class {{ repositoryClassName }}{{ extends is defined ? " extends " ~ extends : "" }}{{ implements is defined ? " implements " ~ implements : "" }}
+{
+    /**
+     * {{ repositoryClassName }} constructor
+     * 
+     * {@inheritdoc}
+     * 
+     * @param ConnectionFactory $connectionFactory Container of Connection instances
+     * @param MapperProvider    $mapper            The documentClass mapper
+     */
+    public function __construct(ConnectionFactory $connectionFactory, MapperProvider $mapper)
+    {
+        $this->documentClassName = '{{ modelNamespace ~"\\"~ modelClassName }}';
+        $this->connectionName = '{{ map.getConnection }}';
+        $this->collectionName = '{{ map.getCollection }}';
+        
+        parent::__construct($connectionFactory, $mapper);
+    }
+}
