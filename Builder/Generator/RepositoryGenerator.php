@@ -56,7 +56,7 @@ class RepositoryGenerator extends AbstractGenerator
      * 
      * @return boolean If generation process succeeded
      */
-    public function generate($sources, $baseModelsNamespace = 'Documents', $baseMappersNamespace = 'Mappers', $baseModelsDirectory = '', $baseRepositoriesNamespace = 'Repositories')
+    public function generate($sources, $baseModelsNamespace = 'Document', $baseMappersNamespace = 'Mapper', $baseModelsDirectory = '', $baseRepositoriesNamespace = 'Repository')
     {
         // Explicit call for TwigRepositoryGenerator requirements
         $this->initialize();
