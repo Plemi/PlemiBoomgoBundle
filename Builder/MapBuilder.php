@@ -46,7 +46,7 @@ class MapBuilder extends BaseMapBuilder
 
                 $metadata = $this->parser->parse($file);
                 $metadata = array_merge($defaultMetadata, $metadata);
-                
+
                 $map = $this->buildMap($metadata);
 
                 $processed[$map->getClass()] = $map;
