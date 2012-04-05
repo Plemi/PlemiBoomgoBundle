@@ -117,7 +117,8 @@ class MapBuilder extends Test
             )
         );
 
-        $processedMaps = $mapBuilder->build(array(__DIR__.'/../../Documents/Annotation.php'), array('connection' => 'injected_connection'));
+        $mapBuilder->setDefaults('connection', 'injected_connection');
+        $processedMaps = $mapBuilder->build(array(__DIR__.'/../../Documents/Annotation.php'));
         $annotationMap = $processedMaps['\Plemi\Bundle\BoomgoBundle\Tests\Documents\Annotation'];
 
         $this->assert()
@@ -134,7 +135,7 @@ class MapBuilder extends Test
             )
         );
 
-        $processedMaps = $mapBuilder->build(array(__DIR__.'/../../Documents/Annotation.php'), array('connection' => 'injected_connection'));
+        $processedMaps = $mapBuilder->build(array(__DIR__.'/../../Documents/Annotation.php'));
         $annotationMap = $processedMaps['\Plemi\Bundle\BoomgoBundle\Tests\Documents\Annotation'];
 
         $this->assert()

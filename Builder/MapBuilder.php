@@ -11,7 +11,9 @@
 
 namespace Plemi\Bundle\BoomgoBundle\Builder;
 
-use Boomgo\Builder\MapBuilder as BaseMapBuilder;
+use Boomgo\Formatter\FormatterInterface,
+    Boomgo\Parser\ParserInterface,
+    Boomgo\Builder\MapBuilder as BaseMapBuilder;
 
 /**
  * Extended MapBuilder
@@ -21,31 +23,65 @@ use Boomgo\Builder\MapBuilder as BaseMapBuilder;
 class MapBuilder extends BaseMapBuilder
 {
     /**
+     * @var array
+     */
+    protected $defaults;
+
+    /**
+     * Constructor defines the Parser & Formatter
+     *
+     * @param ParserInterface    $parser
+     * @param FormatterInterface $formatter
+     */
+    public function __construct(ParserInterface $parser, FormatterInterface $formatter)
+    {
+        parent::__construct($parser, $formatter);
+
+        $this->defaults = array(
+            'type' => 'document',
+            'connection' => 'default'
+        );
+    }
+
+    /**
+     * Define a new key/value pair into defaults metadata
+     * 
+     * @param string $key  The identifier key
+     * @param mixed $value The associated valude
+     */
+    public function setDefaults($key, $value)
+    {
+        $this->defaults[$key] = $value;
+    }
+
+    /**
+     * Return defaults metadatas
+     * 
+     * @return array
+     */
+    public function getDefaults()
+    {
+        return $this->defaults;
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @param array $files List of files to parse
-     * @param array $inputs Injected data (ie: default_connection)
      *
      * @return array $processed
      */
-    public function build(array $files, array $inputs = array())
+    public function build(array $files)
     {
         $this->setMapClassName('Plemi\\Bundle\\BoomgoBundle\\Builder\\Map');
 
         $processed = array();
 
-        $defaultMetadata = array(
-            'type' => 'document',
-            'connection' => 'default'
-        );
-
-        $defaultMetadata = array_merge($defaultMetadata, $inputs);
-
         foreach ($files as $file) {
             if ($this->parser->supports($file)) {
 
                 $metadata = $this->parser->parse($file);
-                $metadata = array_merge($defaultMetadata, $metadata);
+                $metadata = array_merge($this->getDefaults(), $metadata);
 
                 $map = $this->buildMap($metadata);
 

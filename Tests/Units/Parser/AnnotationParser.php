@@ -174,7 +174,7 @@ EOF;
     public function testProcessClassParsing()
     {
         $parser = new BaseAnnotationParser();
-        $documentReflectedClass = new \ReflectionClass('Plemi\Bundle\BoomgoBundle\Tests\Documents\Annotation');
+        $documentReflectedClass = new \ReflectionClass('Plemi\Bundle\BoomgoBundle\Tests\Document\Annotation');
 
         $parserReflectedMethod = new \ReflectionMethod('Plemi\Bundle\BoomgoBundle\Parser\AnnotationParser', 'processClassParsing');
         $parserReflectedMethod->setAccessible(true);
@@ -198,14 +198,14 @@ EOF;
         $parser = new BaseAnnotationParser();
 
         // First annoted document
-        $metadata = $parser->parse(__DIR__.'/../../Documents/Annotation.php');
+        $metadata = $parser->parse(__DIR__.'/../../Document/Annotation.php');
 
         $this->assert
             ->array($metadata)
                 ->hasSize(5)
                 ->hasKeys(array('class','type', 'connection', 'collection', 'definitions'))
             ->string($metadata['class'])
-                ->isEqualTo('Plemi\\Bundle\\BoomgoBundle\\Tests\\Documents\\Annotation')
+                ->isEqualTo('Plemi\\Bundle\\BoomgoBundle\\Tests\\Document\\Annotation')
             ->string($metadata['type'])
                 ->isEqualTo('DOCUMENT')
             ->string($metadata['connection'])
@@ -217,14 +217,14 @@ EOF;
                 ->hasKeys(array('novar', 'typeDescription', 'document'));
 
         // Second annoted document
-        $metadata = $parser->parse(__DIR__.'/../../Documents/EmbedAnnotation.php');
+        $metadata = $parser->parse(__DIR__.'/../../Document/EmbedAnnotation.php');
 
         $this->assert
             ->array($metadata)
                 ->hasSize(3)
                 ->hasKeys(array('class','type', 'definitions'))
             ->string($metadata['class'])
-                ->isEqualTo('Plemi\\Bundle\\BoomgoBundle\\Tests\\Documents\\EmbedAnnotation')
+                ->isEqualTo('Plemi\\Bundle\\BoomgoBundle\\Tests\\Document\\EmbedAnnotation')
             ->string($metadata['type'])
                 ->isEqualTo('EMBEDDED_DOCUMENT')
             ->array($metadata['definitions'])

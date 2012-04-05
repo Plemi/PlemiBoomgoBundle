@@ -36,13 +36,13 @@ class RepositoryGenerator extends Test
         $mockControllerMap = new \mageekguy\atoum\mock\controller();
         $mockControllerMap->__construct = function() {};
         $mockControllerMap->getClass = function() {
-            return 'Plemi\\Bundle\\BoomgoBundle\\Tests\\Documents\\Annotation';
+            return 'Plemi\\Bundle\\BoomgoBundle\\Tests\\Document\\Annotation';
         };
         $mockControllerMap->getClassName = function() {
             return 'Annotation';
         };
         $mockControllerMap->getNamespace = function() {
-            return 'Plemi\\Bundle\\BoomgoBundle\\Tests\\Documents';
+            return 'Plemi\\Bundle\\BoomgoBundle\\Tests\\Document';
         };
         $mockControllerMap->getType = function() {
             return 'DOCUMENT';
@@ -76,23 +76,23 @@ class RepositoryGenerator extends Test
         $this->assert
             ->exception(function () use ($generator) {
                 $generator->generate(
-                    __DIR__.'/../../../Documents/Annotation.php',
+                    __DIR__.'/../../../Document/Annotation.php',
                     'Annotation',
-                    'Mappers',
+                    'Mapper',
                     __DIR__.'/../../../',
-                    'Repositories'
+                    'Repositorie'
                 );
             })
             ->isInstanceOf('RuntimeException')
-            ->hasMessage('The Document map "Plemi\Bundle\BoomgoBundle\Tests\Documents\Annotation" doesn\'t include the document base namespace "Annotation"');
+            ->hasMessage('The Document map "Plemi\Bundle\BoomgoBundle\Tests\Document\Annotation" doesn\'t include the document base namespace "Annotation"');
 
         $this->assert
             ->boolean($generator->generate(
-                array(__DIR__.'/../../../Documents/Annotation.php'),
-                'Documents',
-                'Mappers',
+                array(__DIR__.'/../../../Document/Annotation.php'),
+                'Document',
+                'Mapper',
                 __DIR__.'/../../../',
-                'Repositories'
+                'Repositorie'
             ))
                 ->isTrue();
     }

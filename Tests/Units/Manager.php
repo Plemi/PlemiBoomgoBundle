@@ -11,8 +11,8 @@
 
 namespace Plemi\Bundle\BoomgoBundle\Tests\Units;
 
-use Plemi\Bundle\BoomgoBundle\Tests\Units\Test;
-use Plemi\Bundle\BoomgoBundle\Manager as BaseManager;
+use Plemi\Bundle\BoomgoBundle\Tests\Units\Test,
+    Plemi\Bundle\BoomgoBundle\Manager as BaseManager;
 
 /**
  * Manager test

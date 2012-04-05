@@ -1,6 +1,6 @@
 <?php
 
-namespace Plemi\Bundle\BoomgoBundle\Tests\Documents;
+namespace Plemi\Bundle\BoomgoBundle\Tests\Document;
 
 /**
  * Annotation class comment
@@ -30,7 +30,7 @@ class Annotation
      * A single embedded DocumentEmbed
      *
      * @Persistent
-     * @var Plemi\Bundle\BoomgoBundle\Tests\Documents\EmbedAnnotation
+     * @var Plemi\Bundle\BoomgoBundle\Tests\Document\EmbedAnnotation
      */
     protected $document;
 

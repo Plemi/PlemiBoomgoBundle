@@ -1,6 +1,6 @@
 <?php
 
-namespace Plemi\Bundle\BoomgoBundle\Tests\Documents;
+namespace Plemi\Bundle\BoomgoBundle\Tests\Document;
 
 /**
  * EmbedAnnotation class comment
