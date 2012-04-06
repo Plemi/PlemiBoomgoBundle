@@ -23,8 +23,8 @@ class Manager extends Test
 {
     public function beforeTestMethod($method)
     {
-        $this->mockClass('Plemi\\Bundle\\BoomgoBundle\\Connection\\ConnectionFactory', 'Plemi\\Bundle\\BoomgoBundle\\Connection', 'MockConnectionFactory');
-        $this->mockConnectionFactory = new \Plemi\Bundle\BoomgoBundle\Connection\MockConnectionFactory();
+        $this->mockClass('Plemi\\Bundle\\BoomgoBundle\\Connection\\ConnectionFactory');
+        $this->mockConnectionFactory = new \Mock\Plemi\Bundle\BoomgoBundle\Connection\ConnectionFactory();
     }
 
     public function afterTestMethod($method)
@@ -73,5 +73,33 @@ class Manager extends Test
         $this->assert()
             ->object($manager->getConnectionFactory())
                 ->isIdenticalTo($anotherMockConnectionFactory);
+    }
+
+    public function testGetRepository()
+    {
+        $manager = new BaseManager($this->mockConnectionFactory);
+
+        // Non existent document
+        $this->assert()
+            ->exception(function() use ($manager) {
+                $manager->getRepository('Plemi\Bundle\BoomgoBundle\Tests\Document\InvalidDocument');
+            })
+                ->isInstanceOf('RuntimeException')
+                ->hasMessage('No Mapper found for Document "Plemi\Bundle\BoomgoBundle\Tests\Document\InvalidDocument"');
+
+        // Embedded document
+        $this->assert()
+            ->exception(function() use ($manager) {
+                $manager->getRepository('Plemi\Bundle\BoomgoBundle\Tests\Document\EmbedAnnotation');
+            })
+                ->isInstanceOf('RuntimeException')
+                ->hasMessage('No Repository found for Document "Plemi\Bundle\BoomgoBundle\Tests\Document\EmbedAnnotation", maybe an embedded document');
+
+        // Valid document
+        $annotationRepository = $manager->getRepository('Plemi\Bundle\BoomgoBundle\Tests\Document\Annotation');
+
+        $this->assert()
+            ->object($annotationRepository)
+                ->isInstanceOf('Plemi\Bundle\BoomgoBundle\Repository\AbstractRepository');
     }
 }

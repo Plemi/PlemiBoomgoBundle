@@ -92,7 +92,7 @@ class RepositoryGenerator extends Test
                 'Document',
                 'Mapper',
                 __DIR__.'/../../../',
-                'Repositorie'
+                'Repository'
             ))
                 ->isTrue();
     }
@@ -106,11 +106,11 @@ class RepositoryGenerator extends Test
     //     $generator = new BaseRepositoryGenerator($mapBuilder, $twigGenerator);
 
     //     $generator->generate(
-    //         __DIR__.'/../../../Documents/',
-    //         'Documents',
-    //         'Mappers',
-    //         __DIR__.'/../../../Documents',
-    //         'Repositories'
+    //         __DIR__.'/../../../Document/',
+    //         'Document',
+    //         'Mapper',
+    //         __DIR__.'/../../../Document',
+    //         'Repository'
     //     );
     // }
 }

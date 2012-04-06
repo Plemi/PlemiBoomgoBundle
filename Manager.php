@@ -75,4 +75,30 @@ class Manager
     {
         return $this->cache;
     }
+
+    /**
+     * Return a repository instance
+     * 
+     * @param  string $documentClassName The document fully qualified namespace
+     * 
+     * @return AbstractRepository $repository
+     */
+    public function getRepository($documentClassName)
+    {
+        $documentMapperClassName = str_replace('Document', 'Mapper', $documentClassName.'Mapper');
+
+        if (!class_exists($documentMapperClassName)) {
+            throw new \RuntimeException(sprintf('No Mapper found for Document "%s"', $documentClassName));
+        }
+
+        $documentRepositoryClassName = str_replace('Document', 'Repository', $documentClassName.'Repository');
+
+        if (!class_exists($documentRepositoryClassName)) {
+            throw new \RuntimeException(sprintf('No Repository found for Document "%s", maybe an embedded document', $documentClassName));
+        }
+
+        $repository = new $documentRepositoryClassName($this->getConnectionFactory(), new $documentMapperClassName);
+
+        return $repository;
+    }
 }
