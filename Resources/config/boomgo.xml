@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="plemi_boomgo.manager.class">Plemi\Bundle\BoomgoBundle\Manager</parameter>
+        <parameter key="plemi_boomgo.connection_factory.class">Plemi\Bundle\BoomgoBundle\Connection\ConnectionFactory</parameter>
+        <parameter key="plemi_boomgo.connection.class">Plemi\Bundle\BoomgoBundle\Connection\Connection</parameter>
+        <parameter key="boomgo.cache.class">Boomgo\Cache\ArrayCache</parameter>
+    </parameters>
+
+    <services>
+        <!-- manager -->
+        <service id="plemi_boomgo.manager" class="%plemi_boomgo.manager.class%">
+            <argument type="service" id="plemi_boomgo.connection_factory" />
+            <argument type="service" id="plemi_boomgo.cache" />
+        </service>
+
+        <!-- connection_factory -->
+        <service id="plemi_boomgo.connection_factory" class="%plemi_boomgo.connection_factory.class%" public="false">
+            <argument>%plemi_boomgo.default_connection%</argument>
+        </service>
+
+        <!-- cache -->
+        <service id="plemi_boomgo.cache" class="%boomgo.cache.class%" public="false"></service>
+    </services>
+
+</container>

@@ -77,10 +77,9 @@ class Configuration extends Test
                 ->hasSize(3)
                 ->hasKeys(array('database', 'server', 'options'))
             ->array($options['connections']['local']['options'])
-                ->hasSize(2)
-                ->hasKeys(array('connect', 'replicaSet'))
-            ->array($options['connections']['remote']['options'])
                 ->hasSize(1)
-                ->hasKeys(array('connect'));
+                ->hasKeys(array('replicaSet'))
+            ->array($options['connections']['remote']['options'])
+                ->isEmpty();
     }
 }
