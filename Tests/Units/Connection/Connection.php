@@ -65,10 +65,6 @@ class Connection extends Test
     {
         $connection = new BaseConnection('default');
 
-        $this->assert()
-            ->object($connection->getMongoDB())
-                ->isInstanceOf('MongoDB');
-
         $connection->setDb('my_organization');
         $this->assert()
             ->string($connection->getDb())
@@ -93,8 +89,22 @@ class Connection extends Test
             ->array($connection->getOptions())
                 ->hasKeys(array('connect', 'persistent', 'replicaSet'))
                 ->containsValues(array(false, true, 'myReplicaSet'));
+    }
 
-        $mongo = new \Mongo();
+    /**
+     * As the private method "initialize" can't be mocked, using the "setOptions" method with
+     * connect => false does the trick
+     */
+    public function testSettersGettersNative()
+    {
+        $connection = new BaseConnection('default');
+        $connection->setOptions(array('connect' => false));
+
+        $this->assert()
+            ->object($connection->getMongoDB())
+                ->isInstanceOf('MongoDB');
+
+        $mongo = new \Mongo('mongodb://localhost:27017', array('connect' => false));
         $connection->setMongo($mongo);
         $this->assert()
             ->variable($connection->getMongo())
