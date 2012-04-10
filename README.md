@@ -137,7 +137,7 @@ Then we are able to call :
 <?php
 // My\Bundle\Controller\UserController.php
 
-$repository = $this->container->get('plemi_boomgo')->getRepository('My\Bundle\Document\User');
+$repository = $this->container->get('plemi_boomgo.manager')->getRepository('My\Bundle\Document\User');
 $user = $repository->findOneByNameAndAge('foo', 23);
 ```
 
