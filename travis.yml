@@ -1,0 +1,16 @@
+language: php
+php:
+    - 5.3
+    - 5.4
+env:
+  - SYMFONY_VERSION=origin/master
+branches:
+  only:
+    - master
+before_script:
+  - wget -nc http://getcomposer.org/composer.phar
+  - php composer.phar install --install-suggests
+script: php vendor/bin/atoum -d Tests\Units
+notifications:
+  email:
+    - dev@plemi.org
