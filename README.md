@@ -1,11 +1,13 @@
 PlemiBoomgoBundle
 =================
 
-Gentle introduction
--------------------
-
 This bundle provides Symfony2 integration for [Boomgo](https://github.com/Retentio/Boomgo) : it's a lightweight and 
 simple datamapper for **PHP** and **MongoDB**.
+
+[![Build Status](https://secure.travis-ci.org/Plemi/PlemiBoomgoBundle.png?branch=master)](http://travis-ci.org/Plemi/PlemiBoomgoBundle)
+
+Gentle introduction
+-------------------
 
 What you could find in this bundle :
 
