@@ -10,6 +10,14 @@ branches:
 before_script:
   - wget -nc http://getcomposer.org/composer.phar
   - php composer.phar install --install-suggests
+  - wget http://pecl.php.net/get/mongo-1.2.10.tgz
+  - tar -xzf mongo-1.2.10.tgz
+  - cd mongo-1.2.10
+  - phpize
+  - ./configure
+  - sudo make install
+  - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+
 script: php vendor/bin/atoum -d Tests/Units
 notifications:
   email:
