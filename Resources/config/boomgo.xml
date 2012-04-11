@@ -8,6 +8,7 @@
         <parameter key="plemi_boomgo.manager.class">Plemi\Bundle\BoomgoBundle\Manager</parameter>
         <parameter key="plemi_boomgo.connection_factory.class">Plemi\Bundle\BoomgoBundle\Connection\ConnectionFactory</parameter>
         <parameter key="plemi_boomgo.connection.class">Plemi\Bundle\BoomgoBundle\Connection\Connection</parameter>
+        <parameter key="plemi_boomgo.user.provider.class">Plemi\Bundle\BoomgoBundle\Security\UserProvider\DocumentUserProvider</parameter>
         <parameter key="boomgo.cache.class">Boomgo\Cache\ArrayCache</parameter>
     </parameters>
 
@@ -25,6 +26,11 @@
 
         <!-- cache -->
         <service id="plemi_boomgo.cache" class="%boomgo.cache.class%" public="false"></service>
+
+        <service id="plemi_boomgo.security.user.provider" class="%plemi_boomgo.user.provider.class%" public="false" abstract="true">
+            <argument type="service" id="plemi_boomgo.manager" />
+        </service>
+
     </services>
 
 </container>
