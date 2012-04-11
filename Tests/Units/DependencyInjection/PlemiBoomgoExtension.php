@@ -16,7 +16,7 @@ use Plemi\Bundle\BoomgoBundle\Tests\Units\Test,
 
 /**
  * Extension test
- * 
+ *
  * @author David Guyon <dguyon@gmail.com>
  */
 class PlemiBoomgoExtension extends Test
@@ -80,11 +80,12 @@ class PlemiBoomgoExtension extends Test
 
         $this->assert()
             ->array($container->getDefinitions())
-                ->hasSize(5)
+                ->hasSize(6)
                 ->hasKeys(array(
                     'plemi_boomgo.manager',
                     'plemi_boomgo.connection_factory',
                     'plemi_boomgo.cache',
+                    'plemi_boomgo.security.user.provider',
                     'plemi_boomgo.local_connection',
                     'plemi_boomgo.remote_connection'
                 ));
