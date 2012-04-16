@@ -17,7 +17,7 @@
         "symfony/framework-bundle": "2.*",
         "retentio/boomgo": "dev-master"
     },
-    "suggest": {
+    "require-dev": {
         "mageekguy/atoum": "dev-master"
     },
     "autoload": {

@@ -9,7 +9,7 @@ branches:
     - master
 before_script:
   - wget -nc http://getcomposer.org/composer.phar
-  - php composer.phar install --install-suggests
+  - php composer.phar update --dev
   - wget http://pecl.php.net/get/mongo-1.2.10.tgz
   - tar -xzf mongo-1.2.10.tgz
   - sh -c "cd mongo-1.2.10 && phpize && ./configure && sudo make install"

@@ -147,7 +147,7 @@ Wait, what about unit tests ?
 In order to run unit tests, you have to install [atoum](https://atoum.org) via [Composer](http://getcomposer.org/) and then execute it that way :
 
 ```bash
-php composer.phar install --install-suggests
+php composer.phar update --dev
 php vendor/bin/atoum -d Tests
 ```
 
