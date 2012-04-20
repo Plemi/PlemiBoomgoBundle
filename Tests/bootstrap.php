@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-if (!($loader = @include __DIR__.'/../vendor/.composer/autoload.php')) {
+if (!($loader = @include __DIR__.'/../vendor/autoload.php')) {
     die('You must set up the project dependencies, run the following commands:'.PHP_EOL.
         'wget http://getcomposer.org/composer.phar'.PHP_EOL.
-        'php composer.phar install'.PHP_EOL);
+        'php composer.phar install --dev'.PHP_EOL);
 }
 
 spl_autoload_register(function($className) {
