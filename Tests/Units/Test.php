@@ -11,7 +11,8 @@
 
 namespace Plemi\Bundle\BoomgoBundle\Tests\Units;
 
-use mageekguy\atoum;
+use mageekguy\atoum,
+    mageekguy\atoum\factory;
 
 /**
  * Define namespace for unit test
@@ -23,9 +24,9 @@ abstract class Test extends atoum\test
     /**
      * {@inheritdoc}
      */
-    public function __construct(score $score = null, locale $locale = null, adapter $adapter = null)
+    public function __construct(factory $factory = null)
     {
         $this->setTestNamespace('\\Tests\\Units');
-        parent::__construct($score, $locale, $adapter);
+        parent::__construct($factory);
     }
 }
